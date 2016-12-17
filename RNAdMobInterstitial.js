@@ -13,6 +13,7 @@ const eventHandlers = {
   interstitialDidOpen: new Map(),
   interstitialDidClose: new Map(),
   interstitialWillLeaveApplication: new Map(),
+  interstitialWillLeaveApplication2: new Map(),
 };
 
 const addEventListener = (type, handler) => {
@@ -30,6 +31,9 @@ const addEventListener = (type, handler) => {
       eventHandlers[type].set(handler, DeviceEventEmitter.addListener(type, handler));
       break;
     case 'interstitialWillLeaveApplication':
+      eventHandlers[type].set(handler, DeviceEventEmitter.addListener(type, handler));
+      break;
+    case 'interstitialWillLeaveApplication2':
       eventHandlers[type].set(handler, DeviceEventEmitter.addListener(type, handler));
       break;
     default:
@@ -51,6 +55,7 @@ const removeAllListeners = () => {
   DeviceEventEmitter.removeAllListeners('interstitialDidOpen');
   DeviceEventEmitter.removeAllListeners('interstitialDidClose');
   DeviceEventEmitter.removeAllListeners('interstitialWIllLeaveApplication');
+  DeviceEventEmitter.removeAllListeners('interstitialWIllLeaveApplication2');
 };
 
 // replaces deprecated API
@@ -81,4 +86,17 @@ module.exports = {
     RNAdMobInterstitial.setAdUnitID(id);
     console.warn(`setAdUnitId will be deprecated soon. Please use setAdUnitID instead.`);
   },
+  requestAd2: (cb = () => {}) => RNAdMobInterstitial.requestAd2(cb),
+  showAd2: (cb = () => {}) => RNAdMobInterstitial.showAd2(cb),
+  setAdUnitId2: (id) => {
+    RNAdMobInterstitial.setAdUnitID2(id);
+  },
+  getAdUnitId: (cb = () => {}) => RNAdMobInterstitial.getAdUnitId(cb),
+  getAdUnitId2: (cb = () => {}) => RNAdMobInterstitial.getAdUnitId2(cb),
+  setAdUnitID3: (id) => {
+    RNAdMobInterstitial.setAdUnitID3(id);
+  },
+  requestAd3: (cb = () => {}) => RNAdMobInterstitial.requestAd3(cb),
+  showAd3: (cb = () => {}) => RNAdMobInterstitial.showAd3(cb),
+  getAdUnitId3: (cb = () => {}) => RNAdMobInterstitial.getAdUnitId3(cb)
 };
